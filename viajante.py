@@ -16,17 +16,17 @@ def resolver_caixeiro_viajante(pontos):
     Returns:
         tuple: Uma tupla contendo a menor distância e a melhor rota.
     """
-    cidades = list(pontos.keys())
+    bairros = list(pontos.keys())
     # O ponto de partida é fixo para simplificar o cálculo
-    cidade_inicial = cidades[0]
-    outras_cidades = cidades[1:]
+    bairro_inicial = bairros[0]
+    outros_bairros = bairros[1:]
     
     menor_distancia = float('inf')
     melhor_rota = None
 
     # Gera todas as permutações de rotas possíveis
-    for rota_permutacao in itertools.permutations(outras_cidades):
-        rota_atual = [cidade_inicial] + list(rota_permutacao) + [cidade_inicial]
+    for rota_permutacao in itertools.permutations(outros_bairros):
+        rota_atual = [bairro_inicial] + list(rota_permutacao) + [bairro_inicial]
         distancia_atual = 0
         
         # Calcula a distância total da rota atual
@@ -43,16 +43,16 @@ def resolver_caixeiro_viajante(pontos):
     return menor_distancia, melhor_rota
 
 if __name__ == "__main__":
-    cidades_exemplo = {
-        'A': (0, 0),
-        'B': (1, 5),
-        'C': (4, 3),
-        'D': (6, 2)
+    bairros_exemplo = {
+        'América': (0, 0),
+        'Siqueira': (1, 5),
+        'Luzia': (4, 3),
+        'Jardins': (6, 2)
     }
 
     # Resolve o problema e exibe a possivel solução
-    distancia_minima, rota_otima = resolver_caixeiro_viajante(cidades_exemplo)
+    distancia_minima, rota_otima = resolver_caixeiro_viajante(bairros_exemplo)
 
-    print(f"Cidades: {cidades_exemplo}")
+    print(f"Bairros e coordenadas: {bairros_exemplo}")
     print(f"Melhor rota: {rota_otima}")
     print(f"Distância mínima: {distancia_minima:.2f}")
